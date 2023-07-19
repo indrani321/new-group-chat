@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Chat Dashboard</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="chatApp.css" />
+</head>
+
+<body>
+    <button id="log">Leave Chat</button>
+    
+    <div class="container">
+        <div>
+            
+            <h1>Chat App</h1>
+            <button id="group-chat" >Start your Community</button><br><hr>
+            <div  id="group-name" class="right-aside">
+                <!-- Content of the div -->
+              </div>
+            <ul id="group-members"></ul>
+            
+            <div id="group-icon"></div>
+            
+        </div>
+        <ul id="userlist"></ul>
+        <div class="chat-messages">
+            <hr>
+            
+            <div>
+                <h2></h2>
+                <ul id="message-list"></ul>
+              </div>
+        </div>
+        
+<div class="chat-form-container">
+            <form id="chat-form">
+                <input type="text" id="msg" placeholder="enter message" autocomplete="off" required>
+                <button class="btn" id="add-chat">send</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="popup" class="popup">
+        <span class="close" id="close">&times;</span>
+      <form>
+        <div class="form-group">
+          <label for="name">Group Name:</label>
+          <input type="text" id="group_name" name="group_name" placeholder="Enter Group Name" required>
+        </div>
+        <div class="form-group">
+            <label for="checkbox">Checkbox:</label>
+            <div id="checkboxOptions" name="participants"></div>
+          </div>
+        <button class="btn" id="submit">Create</button>
+      </form>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <script src="chatApp.js"></script>
+    <script src="group.js"></script>
+</body>
+
+</html>

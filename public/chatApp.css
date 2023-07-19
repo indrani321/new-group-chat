@@ -1,0 +1,177 @@
+/* chatApp.css */
+
+/* Reset default margin and padding */
+body, h1, ul, form {
+  margin: 0;
+  padding: 0;
+}
+
+/* Apply some basic styling to the container */
+.container {
+
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Style the header */
+.container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Style the user list */
+#userlist {
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+
+#userlist li {
+  margin-bottom: 10px;
+}
+
+/* Style the chat messages section */
+.chat-messages {
+  margin-bottom: 20px;
+}
+
+.chat-messages h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#message-list {
+  list-style-type: none;
+}
+
+#message-list li {
+  margin-bottom: 10px;
+}
+
+/* Style the chat form container */
+.chat-form-container {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute; /* Add absolute positioning */
+  bottom: 20px; /* Adjust bottom value as per your preference */
+  width: 80%;
+}
+
+#chat-form {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+#msg {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  margin-right: 10px;
+}
+
+#add-chat {
+  padding: 10px 20px;
+  background-color: #031d3b;
+  color: #fff;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+/* Style the Leave Chat button */
+#log {
+  margin-bottom: 20px;
+}
+#log{
+  padding: 10px 10px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  float:right;
+}
+#group-chat{
+  float: right;
+  background-color: #570c23;
+  color: #fff;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  
+  
+}
+#my-button-id{
+  
+  background-color: #f33d06;
+  color: #fff;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+.right-aside{
+  float:right;
+  color: #fcf8f7;
+  background-color: #f33d06;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #b5e3fd;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  width: 400px;
+  max-width: 90%;
+}
+
+.popup form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.popup .form-group {
+  margin-bottom: 15px;
+}
+
+.popup label {
+  margin-bottom: 5px;
+  display: block;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #888;
+}
+
+.close:hover {
+  color: #000;
+}  
+
+.checkbox-container {
+  margin-bottom: 10px; /* Adjust the margin as needed */
+}
+
+input[type="checkbox"] {
+  margin-right: 5px; /* Adjust the margin as needed */
+}

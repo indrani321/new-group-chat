@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <h1>Welcome to Chat-APP</h1>
+    <div id="container">
+        <h2>Signup here</h2>
+    <form action="/signup" method="post" id="form">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email Id</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="phno">Phone Number</label>
+        <input type="number" id="phno" name="phno">
+        
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button id="submit"> SIGN UP</button>
+    </form>
+    <br>
+        <p>Already have an account? <a href="/login">Login</a></p>
+</div>
+ 
+    
+
+
+    <script src="signup.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>
