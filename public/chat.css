@@ -1,0 +1,159 @@
+
+body, h1, h2, h3, p, ul, li, label, button, input, form {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #e0fedf;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0056b3;
+    font-weight: bold;
+  }
+  
+  h2, h3 {
+    margin-bottom: 10px;
+    color: #007bff;
+    text-decoration: underline;
+  }
+  
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  #userlist {
+    margin-bottom: 20px;
+  }
+  
+  #message-list {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #fff;
+  }
+  
+  .chat-form-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  #msg {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #007bff;
+  }
+  
+  .chat-form-container button {
+    margin-left: 10px;
+  }
+  
+  #popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  .form-group input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  #checkboxOptions {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  #checkboxOptions input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  .leave {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    background-color: red;
+  }
+  
+  /* Styling for the "Create Group" button */
+  #topLeftButton {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #007bff;
+  }
+  
+  #topLeftButton:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Media query for responsive layout */
+  @media screen and (max-width: 600px) {
+    .container {
+      max-width: 90%;
+    }
+  }
+  

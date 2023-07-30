@@ -1,6 +1,4 @@
-document.getElementById('submit').addEventListener('click', createGroupName);
- 
-  
+document.getElementById('submit').addEventListener('click', createGroup);
 
 function parseJwt(token) {
     var base64Url = token.split(".")[1];
@@ -18,36 +16,35 @@ function parseJwt(token) {
     return JSON.parse(jsonPayload);
   }
   
-  async function createGroupName(event) {
-    console.log("create-group")
+  async function createGroup(event) {
     event.preventDefault(); 
   
     const name = document.getElementById("group_name").value;
-    const participantCheckboxes = document.querySelectorAll('input[name="users"]:checked');
-    //console.log(participantCheckboxes)
-    console.log('Number of selected checkboxes:', document.querySelectorAll('input[name="users"]:checked').length);
-
+    const participantCheckboxes = document.querySelectorAll('input[name="participants"]:checked');
     const participants = Array.from(participantCheckboxes).map(checkbox => checkbox.value);
     const token = sessionStorage.getItem("token");
     const user = parseJwt(token);
   
-    // Create an object with the group data
     const groupData = {
-      groupname: name,
+      groupName: name,
       participants: participants,
-      created_by: user.username
+      createdBy: user.username,
+      userId: user.userId,
     };
-console.log(groupData);
-  
     
     try {
-        // Send the group data to the server using axios with async/await
-        const response = await axios.post('/save-group', groupData, {
+        const response = await axios.post('/create-group/', groupData, {
           headers: { Authorization: token }
         });
-    } catch (error) {
+        alert('Group Created successfully!');
+        console.log('Group created:', response.data);
+      } catch (error) {
         console.error('Error creating group:', error);
       }
   }
+
+
+
   
- 
+  
+  

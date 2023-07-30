@@ -1,38 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
-    <link rel="stylesheet" href="signup.css">
+    <title>Group-Chat_App</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>Welcome to Chat-APP</h1>
-    <div id="container">
-        <h2>Signup here</h2>
-    <form action="/signup" method="post" id="form">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
-        
-        <label for="email">Email Id</label>
-        <input type="email" id="email" name="email" required>
-        
-        <label for="phno">Phone Number</label>
-        <input type="number" id="phno" name="phno">
-        
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
-        
-        <button id="submit"> SIGN UP</button>
-    </form>
-    <br>
-        <p>Already have an account? <a href="/login">Login</a></p>
-</div>
- 
-    
+    <div class="container">
+        <h1>Sign-Up Here</h1>
+        <form id="my-form">
+            <div class="msg"></div>
+            <div>
+                <label for="name">Enter Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name here..." required>
+            </div>
 
+            <div>
+                <label for="email">Enter Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email here..." required>
+            </div>
 
+            <div>
+            <label for="phone">Enter Phone Number:</label>
+            <input type="phone" id="phone" name="phone" placeholder="xxxxx xxxxx" required>
+            </div>
+
+            <div>
+                <label for="password">Enter Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password here..."
+                    required>
+            </div>
+
+            <input id="submit" type="submit" value="Sign Up" class="btn">
+            <p id="error-message"></p>
+        </form>
+
+        <p>Existing user? <a href="/login">Login</a></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script src="signup.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

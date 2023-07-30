@@ -1,53 +1,79 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
 const cors = require('cors');
-const db = require('./database/db');
-const User = require('./models/user');
-const Group = require('./models/group');
-const UserGroup = require('./models/usergroup');
-const Message = require('./models/chat')
-
+const path = require('path');
 const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
-const signupRoute = require('./routes/signupRoute');
-const loginRoute = require('./routes/loginRoute');
-const chatAppRoute = require('./routes/chatAppRoute');
-const groupmessageRoute = require('./routes/groupMessageRoute');
+const fileupload=require('express-fileupload');
+app.use(fileupload());
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, 'views')));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+app.use(express.static(path.join(__dirname,"public")))
 
-app.use(cors({ origin: "http://127.0.0.1:5500", credentials: true }));
+app.use(cors({origin: '*'}));
 
-// Define associations between models
+const User = require('./models/user');
+const Message = require('./models/message');
+const Group = require('./models/group');
+const GroupUser = require('./models/groupUser');
+const ArchiveChat = require('./models/archive');
+const sequelize = require('./util/database');
+const signupRouter = require('./routes/signup');
+const loginRouter = require('./routes/login');
+const chatRouter = require('./routes/chat');
+const groupRouter = require('./routes/group');
+
+app.use(signupRouter);
+app.use(loginRouter);
+app.use(chatRouter);
+app.use(groupRouter);
+
 User.hasMany(Message);
 Message.belongsTo(User);
 
-Group.belongsTo(User,{as:'admin'})
+Group.hasMany(Message);
+Message.belongsTo(Group);
 
+User.hasMany(ArchiveChat);
+ArchiveChat.belongsTo(User);
 
+Group.hasMany(ArchiveChat);
+ArchiveChat.belongsTo(Group);
 
-User.belongsToMany(Group, { through: UserGroup, as: 'groups' });
-Group.belongsToMany(User, { through: UserGroup, as: 'users' });
+Group.belongsToMany(User, { through: 'GroupUser' });
+User.belongsToMany(Group, { through: 'GroupUser' });
 
-// Sync the database
-db.sync()
-  .then(() => {
-    console.log('Database synchronized successfully.');
-    app.listen(3000, () => {
-      console.log('Server started on port 3000.');
-    });
-  })
-  .catch((err) => {
-    console.error('Error syncing database:', err);
-  });
+//SOCKET
+io.on('connection', socket => {
+    console.log('SOCKET CONNECTED', socket.id)
 
-// Routes
-app.use(signupRoute);
-app.use(loginRoute);
-app.use(chatAppRoute);
-app.use(groupmessageRoute);
+    socket.on('join-room', (grpid, username, cb) => {
+        socket.join(grpid);
+        cb();
+    })
+
+    socket.on('send-message', (gid, usermsg, username) => {
+         if (gid == null) {
+             socket.broadcast.emit('receive-message', usermsg, username);
+             console.log(usermsg,username);
+         } else {
+            socket.to(gid).emit('receive-message', usermsg, username);
+            console.log(socket.id, usermsg);
+        }
+    })
+
+    socket.on('close', () => {
+        console.log('Client disconnected');
+      });
+})
+
+sequelize.sync()
+.then(result=>{
+    server.listen(process.env.PORT||3000, ()=> console.log('connected to Database'));
+})
+.catch(err=>{
+    console.log(err);
+})
+

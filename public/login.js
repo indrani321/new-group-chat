@@ -1,9 +1,9 @@
-const loginButton = document.getElementById('submit');
-loginButton.addEventListener('click', handleLogin);
+const submit = document.getElementById('submit');
 
+submit.addEventListener("click", AleradyUser);
 
-async function handleLogin(e) {
-  e.preventDefault();
+async function AleradyUser(event) {
+  event.preventDefault();
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
@@ -11,24 +11,19 @@ async function handleLogin(e) {
     email: email,
     password: password,
   };
-  // console.log(obj);
+  
   try {
     const response = await axios.post(
-      "login/success",
-      obj
+      "http://16.171.131.88:80/login", obj
     );
     alert(response.data.message);
     localStorage.setItem('token',response.data.token);
     sessionStorage.setItem('token',response.data.token);
-    console.log(response.data.token);
-    window.location.href="/chatapp";
+    window.location.href="/chat/";
   } catch (err) {
-    // console.log(err);
-    // document.getElementById("err").innerText = err.response.data.message;
-    if (err.response && err.response.status === 400) {
-        alert('user doesnt exist');
-      } else {
-        console.log(err);
-      }
+    console.log(err);
+    document.getElementById("err").innerText = err.response.data.message;
+    document.getElementById("err").style.color = "red";
   }
 }
+

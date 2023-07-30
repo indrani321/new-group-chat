@@ -1,40 +1,33 @@
-const sign = document.getElementById('submit');
+const submit = document.getElementById('submit');
 
-sign.addEventListener('click', AddUser);
+submit.addEventListener('click', AddUser);
 
-async function AddUser(e) {
-  e.preventDefault();
+async function AddUser(event) {
+  event.preventDefault();
   const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
-  const phno = document.getElementById('phno').value;
+  const phone = document.getElementById('phone').value;
   const password = document.getElementById('password').value;
-
-  if (name === '' || email === '' || password === '' || phno === '') {
-    window.alert('Please enter all fields');
-    return; 
-  }
 
   const obj = {
     name: name,
     email: email,
-    phno: phno,
+    phone: phone,
     password: password,
   };
 
-  try {
-    const response = await axios.post('/signup', obj);
-    console.log(response.data.newSignUp);
-    if (response.status === 201) {
-      alert('Successfully signed up');
-      window.location.href = '/';
-    } else {
-      alert('User already exists, Please Login');
+    try {
+      const response = await axios.post('/signup', obj);
+      alert('User Signed Up successfully!');
+      location.reload();
+    } catch (err) {
+      const errorElement = document.getElementById('error-message');
+      if (err.response.status == 400) {
+        errorElement.textContent = "Email already exists!";
+        errorElement.style.color = "red";
+      } else {
+        errorElement.textContent = "An error occurred. Please try again later.";
+      }
+      console.log('Error occurred:', err.message);
     }
-  } catch (err) {
-    if (err.response && err.response.status === 400) {
-      alert('User already exists, Please Login');
-    } else {
-      console.log(err);
-    }
-  }
-}
+  } 
